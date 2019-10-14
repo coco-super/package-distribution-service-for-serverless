@@ -7,7 +7,7 @@ Resources:
       Description: 'helloworld'
       Policies: 
         - AliyunOSSFullAccess
-    {{ projectName }}:
+    {{ service }}:
       Type: 'Aliyun::Serverless::Function'
       Properties:
         Handler: example.App::handleRequest
