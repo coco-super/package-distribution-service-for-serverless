@@ -5,3 +5,5 @@ src/
 pom.xml
 template.yml
 fun.yml
+.env
+.funignore
