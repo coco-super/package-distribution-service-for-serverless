@@ -1,5 +1,4 @@
 # Serverless 微服务实践-移动应用包分发服务
-
 ## 背景
 
 阿里云函数计算是事件驱动的全托管计算服务。通过函数计算，您无需管理服务器等基础设施，只需编写代码并上传。函数计算会为您准备好计算资源，以弹性、可靠的方式运行您的代码，并提供日志查询、性能监控、报警等功能。借助于函数计算，您可以快速构建任何类型的应用和服务，无需管理和运维。而且，您只需要为代码实际运行所消耗的资源付费，代码未运行则不产生费用。
@@ -9,7 +8,7 @@
 在分包过程中，下载/修改/上传是一个比较消耗资源的任务，需要消耗大量的计算/网络资源。并且分包任务只在应用发布新版本时才会发生，需要在尽可能短的时间内完成。针对这种有明显波峰波谷的场景，非常适合使用函数计算来完成。更重要的是这个服务是具有弹性伸缩和高可用能力的。
 
 <a name="1"></a>
-## APK分包简介
+## apk 分包简介
 
 ![apk分包简介.jpg](/figures/apk分包简介.jpg)
 
@@ -39,9 +38,7 @@ fun 工具的某些子命令可能会用到 docker，所以你需要安装好 do
 <a name="IVZmu"></a>
 ### 3.apk 包准备
 
-在这个实验中，我们会使用一个示例的 apk 包，可以从这里下载 [qq-v2.apk](https://yq.aliyun.com/go/articleRenderRedirect?url=http%3A%2F%2Ffc-imm-demo-cici.oss-cn-hangzhou.aliyuncs.com%2Fapk%2Fqq-v2.apk)
-
-写入渠道信息的方式，我们使用美团的开源工具 [walle](https://yq.aliyun.com/go/articleRenderRedirect?spm=a2c4e.11153940.0.0.54774df4JFNSwx&url=https%3A%2F%2Fgithub.com%2FMeituan-Dianping%2Fwalle)，下载 [walle-cli-all.jar](https://yq.aliyun.com/go/articleRenderRedirect?url=http%3A%2F%2Ffc-imm-demo-cici.oss-cn-hangzhou.aliyuncs.com%2Fapk%2Fwalle-cli-all.jar) 包备用。
+在这个实验中，我们会使用一个示例的 apk 包，可以从这里下载 [qq-v2.apk](https://yq.aliyun.com/go/articleRenderRedirect?url=http%3A%2F%2Ffc-imm-demo-cici.oss-cn-hangzhou.aliyuncs.com%2Fapk%2Fqq-v2.apk)。
 
 下载 [qq-v2.apk](https://yq.aliyun.com/go/articleRenderRedirect?url=http%3A%2F%2Ffc-imm-demo-cici.oss-cn-hangzhou.aliyuncs.com%2Fapk%2Fqq-v2.apk) ，上传到自己的 oss bucket中：
 
@@ -93,7 +90,7 @@ finish rendering template.
 
 输入一个 oss 的 bucket，注意 oss Bucket 是全球唯一的，上面的 chrome-headless 已经被占用了，请换一个新的名称或者一个已经创建好的（已经创建好的，请确保 region 一致）。
 
-输入的 bucket name 和 **apk 包准备**中提到的 oss bucket name 是同一个，本示例为：`sunfeiyu`
+和 **apk 包准备**中提到的 oss bucket name 是同一个，本示例为：`sunfeiyu`
 
 <a name="KSZvl"></a>
 ### 4. 编译
@@ -122,20 +119,7 @@ Tips for next step
 * Deploy Resources: fun deploy
 ```
 
-查看编译后的交付产物：
-
-```powershell
-$ cd .fun/build/artifacts/apk/apk/lib 
-$ ls
-aliyun-java-sdk-core-3.4.0.jar aliyun-java-sdk-sts-3.0.0.jar  commons-logging-1.2.jar        httpcore-4.4.1.jar             jettison-1.1.jar
-aliyun-java-sdk-ecs-4.2.0.jar  aliyun-sdk-oss-3.6.0.jar       fc-java-core-1.3.0.jar         javax.servlet-api-3.1.0.jar    stax-api-1.0.1.jar
-aliyun-java-sdk-ram-3.0.0.jar  commons-codec-1.9.jar          httpclient-4.4.1.jar           jdom-1.1.jar
-```
-
-<a name="ms5sl"></a>
-#### 添加 jar 包
-将准备工作中下载的 `walle-cli-all.jar` ，放到 `.fun/build/artifacts/apk/apk/lib` 目录下
-
+关于 Fun build 构建函数详细请参照云栖文章 [开发函数计算的正确姿势 —— 使用 Fun Build 构建函数](https://yq.aliyun.com/articles/719102)。
 
 <a name="290f0a78"></a>
 ### 5.服务部署
@@ -197,9 +181,9 @@ Success
 
 ![image.png](/figures/新的apk包.png)
 
-将 oss 中 qq-v2-signed.apk 下载到本地。
-
 查看渠道信息是否写入：
+
+将 oss 中 qq-v2-signed.apk 下载到本地。
 
 ```powershell
 ~/Downloads                                                                                                                                             ⍉

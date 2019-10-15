@@ -12,6 +12,6 @@ Resources:
       Properties:
         Handler: example.App::handleRequest
         Runtime: java8
-        CodeUri: './target/'
+        CodeUri: './'
         Timeout: 60
         MemorySize: 1024
