@@ -11,7 +11,7 @@
 <a name="1"></a>
 ## APK分包简介
 
-![apk分包简介.jpg](/fihures/apk分包简介.jpg)
+![apk分包简介.jpg](/figures/apk分包简介.jpg)
 
 更多参考 [**[函数计算] Serverless 微服务实践-移动应用包分发服务**](https://yq.aliyun.com/articles/699972)
 
