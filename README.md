@@ -1,5 +1,8 @@
 # Serverless 微服务实践-移动应用包分发服务
 
+<a name="simple-fc-uncompress-service-for-oss"></a>
+# package distribution service for serverless
+
 <a name="8e1b944f"></a>
 ## 背景
 
@@ -12,7 +15,7 @@
 <a name="1"></a>
 ## APK分包简介
 
-![apk分包简介.jpg](/figures/apk分包简介.jpg)
+![apk分包简介.jpg](/fihures/apk分包简介.jpg)
 
 更多参考 [**[函数计算] Serverless 微服务实践-移动应用包分发服务**](https://yq.aliyun.com/articles/699972)
 
@@ -44,9 +47,9 @@ fun 工具的某些子命令可能会用到 docker，所以你需要安装好 do
 
 写入渠道信息的方式，我们使用美团的开源工具 [walle](https://yq.aliyun.com/go/articleRenderRedirect?spm=a2c4e.11153940.0.0.54774df4JFNSwx&url=https%3A%2F%2Fgithub.com%2FMeituan-Dianping%2Fwalle)，下载 [walle-cli-all.jar](https://yq.aliyun.com/go/articleRenderRedirect?url=http%3A%2F%2Ffc-imm-demo-cici.oss-cn-hangzhou.aliyuncs.com%2Fapk%2Fwalle-cli-all.jar) 包备用。
 
-下载 [qq-v2.apk](https://yq.aliyun.com/go/articleRenderRedirect?url=http%3A%2F%2Ffc-imm-demo-cici.oss-cn-hangzhou.aliyuncs.com%2Fapk%2Fqq-v2.apk) ，上传到自己的oss bucket中：
+下载 [qq-v2.apk](https://yq.aliyun.com/go/articleRenderRedirect?url=http%3A%2F%2Ffc-imm-demo-cici.oss-cn-hangzhou.aliyuncs.com%2Fapk%2Fqq-v2.apk) ，上传到自己的 oss bucket中：
 
-![image.png](/figures/apk包分发前.png)
+![image.png](/fihures/apk包分发前.png)
 
 <a name="TLgrD"></a>
 ## 快速开始:
@@ -65,35 +68,36 @@ fun init -n xxx https://github.com/coco-super/package-distribution-service-for-s
 ```powershell
 ▶ fun init -n apk https://github.com/coco-super/package-distribution-service-for-serverless
 start cloning...
-Cloning into '.fun-init-cache-0a651270-ee93-11e9-aa02-4786e30684a4'...
-remote: Enumerating objects: 13, done.
-remote: Counting objects: 100% (13/13), done.
-remote: Compressing objects: 100% (9/9), done.
-remote: Total 13 (delta 0), reused 9 (delta 0), pack-reused 0
-Unpacking objects: 100% (13/13), done.
+Cloning into '.fun-init-cache-2fc2d680-eeff-11e9-a930-6fd4d1ac6506'...
+remote: Enumerating objects: 23, done.
+remote: Counting objects: 100% (23/23), done.
+remote: Compressing objects: 100% (16/16), done.
+remote: Total 23 (delta 0), reused 18 (delta 0), pack-reused 0
+Unpacking objects: 100% (23/23), done.
 finish clone.
+? Please input a oss bucket name? sunfeiyu
 Start rendering template...
-+ /Users/ellison/package-distribution-service-for-serverless/apk
-+ /Users/ellison/package-distribution-service-for-serverless/apk/.funignore
-+ /Users/ellison/package-distribution-service-for-serverless/apk/pom.xml
-+ /Users/ellison/package-distribution-service-for-serverless/apk/src
-+ /Users/ellison/package-distribution-service-for-serverless/apk/src/main
-+ /Users/ellison/package-distribution-service-for-serverless/apk/src/main/java
-+ /Users/ellison/package-distribution-service-for-serverless/apk/src/main/java/example
-+ /Users/ellison/package-distribution-service-for-serverless/apk/src/main/java/example/App.java
-+ /Users/ellison/package-distribution-service-for-serverless/apk/template.yml
++ /Users/ellison/simple-fc-uncompress-service-for-oss/apk
++ /Users/ellison/simple-fc-uncompress-service-for-oss/apk/.funignore
++ /Users/ellison/simple-fc-uncompress-service-for-oss/apk/pom.xml
++ /Users/ellison/simple-fc-uncompress-service-for-oss/apk/src
++ /Users/ellison/simple-fc-uncompress-service-for-oss/apk/src/main
++ /Users/ellison/simple-fc-uncompress-service-for-oss/apk/src/main/java
++ /Users/ellison/simple-fc-uncompress-service-for-oss/apk/src/main/java/example
++ /Users/ellison/simple-fc-uncompress-service-for-oss/apk/src/main/java/example/App.java
++ /Users/ellison/simple-fc-uncompress-service-for-oss/apk/target
++ /Users/ellison/simple-fc-uncompress-service-for-oss/apk/target/classes
++ /Users/ellison/simple-fc-uncompress-service-for-oss/apk/target/classes/example
++ /Users/ellison/simple-fc-uncompress-service-for-oss/apk/target/classes/example/App.class
++ /Users/ellison/simple-fc-uncompress-service-for-oss/apk/template.yml
 finish rendering template.
 ```
-[](https://yq.aliyun.com/go/articleRenderRedirect?spm=a2c4e.11153940.0.0.54774df4JFNSwx&url=https%3A%2F%2Fgithub.com%2FMeituan-Dianping%2Fwalle)
-<a name="v8wsD"></a>
-#### 稍作修改
 
-1. `App.java`
+上面会提示：
 
-```powershell
-- String bucketName = "sunfeiyu";
-+ String bucketName = "替换成你 oss 的 bucketName";
-```
+输入一个 oss 的 bucket，注意 oss Bucket 是全球唯一的，上面的 chrome-headless 已经被占用了，请换一个新的名称或者一个已经创建好的（已经创建好的，请确保 region 一致）。
+
+和 **apk 包准备**中提到的 oss bucket name 是同一个，本示例为：`sunfeiyu`
 
 <a name="KSZvl"></a>
 ### 4. 编译
@@ -118,7 +122,7 @@ finish rendering template.
 
 <a name="ms5sl"></a>
 #### 添加 jar 包
-将准备工作中下载 `walle-cli-all.jar` ，放到 `./target/` 目录下
+将准备工作中下载的 下载 `walle-cli-all.jar` ，放到 `./target/` 目录下
 
 <a name="290f0a78"></a>
 ### 5.服务部署
@@ -152,7 +156,7 @@ service apk deploy success
 
 1. 登陆阿里云函数计算[控制台](https://fc.console.aliyun.com)，手动执行。
 
-![image.png](/figures/控制台执行.png)
+![image.png](/fihures/控制台执行.png)
 
 2. `fun invoke apk`  命令远端调用：
 

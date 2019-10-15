@@ -5,7 +5,7 @@
         {
             "type": "input",                               
             "name": "bucket",                                
-            "message": "Please input a oss bucket name"
+            "message": "Please input a oss bucket name?"
         }
     ],
     "vars": {
