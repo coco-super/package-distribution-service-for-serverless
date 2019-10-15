@@ -1,6 +1,13 @@
 {
     "name": "package distribution service",
     "description": "Package distribution service for Serverless architecture",
+    "userPrompt": [                                        
+        {
+            "type": "input",                               
+            "name": "bucket",                                
+            "message": "Please input a oss bucket name"
+        }
+    ],
     "vars": {
         "service": "{{ projectName }}"
     }
