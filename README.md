@@ -1,5 +1,4 @@
 # Serverless 微服务实践-移动应用包分发服务
-介绍如何通过函数计算构建 Serverless 架构的包分发服务，在开发运维效率，性能和成本间取得良好的平衡。
 
 <a name="8e1b944f"></a>
 ## 背景
@@ -119,7 +118,7 @@ finish rendering template.
 
 <a name="ms5sl"></a>
 #### 添加 jar 包
-将准备工作中下载的 下载 `walle-cli-all.jar` ，放到 `./target/` 目录下
+将准备工作中下载 `walle-cli-all.jar` ，放到 `./target/` 目录下
 
 <a name="290f0a78"></a>
 ### 5.服务部署
