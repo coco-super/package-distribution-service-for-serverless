@@ -45,7 +45,7 @@ fun 工具的某些子命令可能会用到 docker，所以你需要安装好 do
 
 下载 [qq-v2.apk](https://yq.aliyun.com/go/articleRenderRedirect?url=http%3A%2F%2Ffc-imm-demo-cici.oss-cn-hangzhou.aliyuncs.com%2Fapk%2Fqq-v2.apk) ，上传到自己的 oss bucket中：
 
-![image.png](/fihures/apk包分发前.png)
+![image.png](/figures/apk包分发前.png)
 
 <a name="TLgrD"></a>
 ## 快速开始:
@@ -152,7 +152,7 @@ service apk deploy success
 
 1. 登陆阿里云函数计算[控制台](https://fc.console.aliyun.com)，手动执行。
 
-![image.png](/fihures/控制台执行.png)
+![image.png](/figures/控制台执行.png)
 
 2. `fun invoke apk`  命令远端调用：
 
