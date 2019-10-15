@@ -62,7 +62,7 @@ fun init -n xxx https://github.com/coco-super/package-distribution-service-for-s
 其中 -n 表示要作为文件夹生成的项目名称。默认值是 fun-app。更多fun init 命令格式选项说明请参考云栖文章[开发函数计算的正确姿势 —— 使用 Fun Init 初始化项目](https://yq.aliyun.com/articles/674363)。
 
 ```powershell
-▶ fun init -n apk https://github.com/coco-super/package-distribution-service-for-serverless
+$ fun init -n apk https://github.com/coco-super/package-distribution-service-for-serverless
 start cloning...
 Cloning into '.fun-init-cache-2fc2d680-eeff-11e9-a930-6fd4d1ac6506'...
 remote: Enumerating objects: 23, done.
@@ -98,7 +98,7 @@ finish rendering template.
 <a name="KSZvl"></a>
 ### 4. 编译
 ```powershell
-▶ mvn package
+$ mvn package
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] ----------------------------< example:demo >----------------------------
@@ -126,7 +126,7 @@ finish rendering template.
 
 ```bash
 examples/ellison/apk  aliyun-master ✗                                                                                                         9h55m ⚑ ◒  
-▶ fun deploy
+$ fun deploy
 using template: template.yml
 using region: cn-shanghai
 using accountId: ***********8320
@@ -158,7 +158,7 @@ service apk deploy success
 
 ```powershell
 examples/ellison/apk  aliyun-master ✗                                                                                                        10h54m ⚑ ◒  
-▶ fun invoke apk
+$ fun invoke apk
 using template: template.yml
 ========= FC invoke Logs begin =========
 FC Invoke Start RequestId: 23f34cc4-0cd3-40e0-9a04-f6586cf29be6
@@ -188,7 +188,7 @@ Success
 
 ```powershell
 ~/Downloads                                                                                                                                             ⍉
-▶ java -jar /Users/ellison/Downloads/walle-cli-all.jar show qq-v2-signed.apk
+$ java -jar /Users/ellison/Downloads/walle-cli-all.jar show qq-v2-signed.apk
 /Users/ellison/Downloads/qq-v2-signed.apk : {channel=aliyun-fc}
 ```
 
