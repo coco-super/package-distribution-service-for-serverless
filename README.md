@@ -93,7 +93,7 @@ finish rendering template.
 
 输入一个 oss 的 bucket，注意 oss Bucket 是全球唯一的，上面的 chrome-headless 已经被占用了，请换一个新的名称或者一个已经创建好的（已经创建好的，请确保 region 一致）。
 
-和 **apk 包准备**中提到的 oss bucket name 是同一个，本示例为：`sunfeiyu`
+输入的 bucket name 和 **apk 包准备**中提到的 oss bucket name 是同一个，本示例为：`sunfeiyu`
 
 <a name="KSZvl"></a>
 ### 4. 编译
@@ -134,7 +134,7 @@ aliyun-java-sdk-ram-3.0.0.jar  commons-codec-1.9.jar          httpclient-4.4.1.j
 
 <a name="ms5sl"></a>
 #### 添加 jar 包
-将准备工作中下载的 下载 `walle-cli-all.jar` ，放到 `.fun/build/artifacts/apk/apk/lib` 目录下
+将准备工作中下载的 `walle-cli-all.jar` ，放到 `.fun/build/artifacts/apk/apk/lib` 目录下
 
 
 <a name="290f0a78"></a>
@@ -197,9 +197,9 @@ Success
 
 ![image.png](/figures/新的apk包.png)
 
-查看渠道信息是否写入：
-
 将 oss 中 qq-v2-signed.apk 下载到本地。
+
+查看渠道信息是否写入：
 
 ```powershell
 ~/Downloads                                                                                                                                             ⍉
