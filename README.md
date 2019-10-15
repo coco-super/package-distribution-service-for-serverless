@@ -181,9 +181,9 @@ Success
 
 ![image.png](/figures/新的apk包.png)
 
-查看渠道信息是否写入：
-
 将 oss 中 qq-v2-signed.apk 下载到本地。
+
+查看渠道信息是否写入：
 
 ```powershell
 ~/Downloads                                                                                                                                             ⍉
