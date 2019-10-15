@@ -56,7 +56,7 @@ fun 工具的某些子命令可能会用到 docker，所以你需要安装好 do
 使用 fun init 命令可以快捷的将本模板项目初始化到本地，执行命令 ：
 
 ```powershell
-fun init -n xxx https://github.com/coco-super/package-distribution-service-for-serverless
+$ fun init -n xxx https://github.com/coco-super/package-distribution-service-for-serverless
 ```
 
 其中 -n 表示要作为文件夹生成的项目名称。默认值是 fun-app。更多fun init 命令格式选项说明请参考云栖文章[开发函数计算的正确姿势 —— 使用 Fun Init 初始化项目](https://yq.aliyun.com/articles/674363)。
@@ -97,37 +97,53 @@ finish rendering template.
 
 <a name="KSZvl"></a>
 ### 4. 编译
+在模版项目的根目录 **apk** 下执行 `fun build` 命令编译：
+
 ```powershell
-$ mvn package
-[INFO] Scanning for projects...
-[INFO] 
-[INFO] ----------------------------< example:demo >----------------------------
-[INFO] Building demo 1.0-SNAPSHOT
-[INFO] --------------------------------[ jar ]---------------------------------
-[INFO] 
-[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ demo ---
-[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
-[INFO] skip non existing resourceDirectory /Users/ellison/package-distribution-service-for-serverless/{{ projectName }}/src/main/resources
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  4.763 s
-[INFO] Finished at: 2019-10-14T22:59:57+08:00
-[INFO] --------------------
+$ fun build 
+using template: template.yml
+start building function dependencies without docker
+
+building apk/apk
+running task flow MavenTaskFlow
+running task: MavenCompileTask
+running task: MavenCopyDependencies
+running task: CopyMavenArtifacts
+
+Build Success
+
+Built artifacts: .fun/build/artifacts
+Built template: .fun/build/artifacts/template.yml
+
+Tips for next step
+======================
+* Invoke Event Function: fun local invoke
+* Invoke Http Function: fun local start
+* Deploy Resources: fun deploy
+```
+
+查看编译后的交付产物：
+
+```powershell
+$ cd .fun/build/artifacts/apk/apk/lib 
+$ ls
+aliyun-java-sdk-core-3.4.0.jar aliyun-java-sdk-sts-3.0.0.jar  commons-logging-1.2.jar        httpcore-4.4.1.jar             jettison-1.1.jar
+aliyun-java-sdk-ecs-4.2.0.jar  aliyun-sdk-oss-3.6.0.jar       fc-java-core-1.3.0.jar         javax.servlet-api-3.1.0.jar    stax-api-1.0.1.jar
+aliyun-java-sdk-ram-3.0.0.jar  commons-codec-1.9.jar          httpclient-4.4.1.jar           jdom-1.1.jar
 ```
 
 <a name="ms5sl"></a>
 #### 添加 jar 包
-将准备工作中下载的 下载 `walle-cli-all.jar` ，放到 `./target/` 目录下
+将准备工作中下载的 下载 `walle-cli-all.jar` ，放到 `.fun/build/artifacts/apk/apk/lib` 目录下
+
 
 <a name="290f0a78"></a>
 ### 5.服务部署
-在模版项目的的根目录 apk 下执行 fun deploy 部署到云端。
+在模版项目的的根目录 **apk** 下执行 `fun deploy` 部署到云端。
 
-```bash
-examples/ellison/apk  aliyun-master ✗                                                                                                         9h55m ⚑ ◒  
+```powershell
 $ fun deploy
-using template: template.yml
+using template: .fun/build/artifacts/template.yml
 using region: cn-shanghai
 using accountId: ***********8320
 using accessKeyId: ***********mTN4
@@ -140,7 +156,7 @@ Waiting for service apk to be deployed...
         attached policies AliyunOSSFullAccess to role: aliyunfcgeneratedrole-cn-shanghai-apk
         Waiting for function apk to be deployed...
                 Waiting for packaging function apk code...
-                The function apk has been packaged. A total of 7 files files were compressed and the final size was 3.53 MB
+                The function apk has been packaged. A total of 15 files files were compressed and the final size was 3.13 MB
         function apk deploy success
 service apk deploy success
 ```
@@ -157,7 +173,6 @@ service apk deploy success
 2. `fun invoke apk`  命令远端调用：
 
 ```powershell
-examples/ellison/apk  aliyun-master ✗                                                                                                        10h54m ⚑ ◒  
 $ fun invoke apk
 using template: template.yml
 ========= FC invoke Logs begin =========
@@ -188,7 +203,7 @@ Success
 
 ```powershell
 ~/Downloads                                                                                                                                             ⍉
-$ java -jar /Users/ellison/Downloads/walle-cli-all.jar show qq-v2-signed.apk
+▶ java -jar /Users/ellison/Downloads/walle-cli-all.jar show qq-v2-signed.apk
 /Users/ellison/Downloads/qq-v2-signed.apk : {channel=aliyun-fc}
 ```
 
