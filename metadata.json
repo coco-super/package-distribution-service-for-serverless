@@ -10,5 +10,6 @@
     ],
     "vars": {
         "service": "{{ projectName }}"
-    }
+    },
+    "copyOnlyPaths": [ "walle-cli-all.jar" ]
 }
