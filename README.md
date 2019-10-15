@@ -50,13 +50,7 @@ fun 工具的某些子命令可能会用到 docker，所以你需要安装好 do
 <a name="a4979714"></a>
 ### 1.通过 fun 模板生成项目骨架
 
-使用 fun init 命令可以快捷的将本模板项目初始化到本地，执行命令 ：
-
-```powershell
-$ fun init -n xxx https://github.com/coco-super/package-distribution-service-for-serverless
-```
-
-其中 -n 表示要作为文件夹生成的项目名称。默认值是 fun-app。更多fun init 命令格式选项说明请参考云栖文章[开发函数计算的正确姿势 —— 使用 Fun Init 初始化项目](https://yq.aliyun.com/articles/674363)。
+使用 `fun init` 命令可以快捷的将本模板项目初始化到本地，执行命令 ：
 
 ```powershell
 $ fun init -n apk https://github.com/coco-super/package-distribution-service-for-serverless
@@ -86,15 +80,15 @@ Start rendering template...
 finish rendering template.
 ```
 
-上面会提示：
+其中 -n 表示要作为文件夹生成的项目名称。默认值是 fun-app。更多fun init 命令格式选项说明请参考云栖文章[开发函数计算的正确姿势 —— 使用 Fun Init 初始化项目](https://yq.aliyun.com/articles/674363)。
 
-输入一个 oss 的 bucket，注意 oss Bucket 是全球唯一的，上面的 chrome-headless 已经被占用了，请换一个新的名称或者一个已经创建好的（已经创建好的，请确保 region 一致）。
+执行 `fun init`后会提示：输入一个 oss 的 bucket，注意 oss Bucket 是全球唯一的，如已经被占用了，请换一个新的名称或者一个已经创建好的（已经创建好的，请确保 region 一致）。
 
-和 **apk 包准备**中提到的 oss bucket name 是同一个，本示例为：`sunfeiyu`
+ps: 输入的内容和 **apk 包准备**中提到的 oss bucket name 是同一个，本示例为：`sunfeiyu`
 
 <a name="KSZvl"></a>
 ### 4. 编译
-在模版项目的根目录 **apk** 下执行 `fun build` 命令编译：
+在模版项目的根目录下执行 `fun build` 命令编译：
 
 ```powershell
 $ fun build 
@@ -123,7 +117,7 @@ Tips for next step
 
 <a name="290f0a78"></a>
 ### 5.服务部署
-在模版项目的的根目录 **apk** 下执行 `fun deploy` 部署到云端。
+在模版项目的的根目录下执行 `fun deploy` 部署到云端。
 
 ```powershell
 $ fun deploy
@@ -154,7 +148,7 @@ service apk deploy success
 
 ![image.png](/figures/控制台执行.png)
 
-2. `fun invoke apk`  命令远端调用：
+2. 项目根目录下 `fun invoke apk` 命令远端调用：
 
 ```powershell
 $ fun invoke apk
@@ -187,7 +181,7 @@ Success
 
 ```powershell
 ~/Downloads                                                                                                                                             ⍉
-▶ java -jar /Users/ellison/Downloads/walle-cli-all.jar show qq-v2-signed.apk
+$ java -jar /Users/ellison/Downloads/walle-cli-all.jar show qq-v2-signed.apk
 /Users/ellison/Downloads/qq-v2-signed.apk : {channel=aliyun-fc}
 ```
 
