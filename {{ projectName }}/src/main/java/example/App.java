@@ -28,7 +28,7 @@ public class App implements StreamRequestHandler
                 context.getExecutionCredentials().getAccessKeySecret(),
                 context.getExecutionCredentials().getSecurityToken());
 
-        String bucketName = {{ bucket }};
+        String bucketName = "{{ bucket }}";
         String objectName = "qq-v2.apk";
         String outObjectName = "qq-v2-signed.apk";
         String inputApk = "/tmp/input.apk";
